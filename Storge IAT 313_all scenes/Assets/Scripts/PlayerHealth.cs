@@ -9,9 +9,10 @@ public class PlayerHealth : MonoBehaviour
     public float health;
     public float maxHealth = 10;
     //public GameObject otherObject;
+    private Animator animator;
 
     // public HealthBar healthBar;
-  //  public Image[] healthpoints;
+    //  public Image[] healthpoints;
     public Image healthbar;
     float lerpSpeed;
     AudioManager audioManager;
@@ -24,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
         health = maxHealth;
         // healthBar.SetMaxHealth(maxHealth);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        animator = GetComponent<Animator>();
 
 
     }
@@ -61,6 +63,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
+        animator.SetTrigger("HurtTrigger");
         audioManager.PlaySFX(audioManager.hurt);
 
 

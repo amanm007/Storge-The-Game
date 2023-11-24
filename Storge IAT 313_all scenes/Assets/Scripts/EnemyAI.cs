@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     private AIDestinationSetter destinationSetter;
     private Patrol patrolScript;
     private SpriteRenderer sp;
+    private Animator anim;
     private enum State { Patrolling, Chasing, RandomMoving }
     private State currentState;
 
@@ -23,6 +24,8 @@ public class EnemyAI : MonoBehaviour
         destinationSetter = GetComponent<AIDestinationSetter>();
         patrolScript = GetComponent<Patrol>();
         sp = GetComponent<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
+
 
         // Set the initial state to patrolling
         SetState(State.Patrolling);
@@ -42,6 +45,7 @@ public class EnemyAI : MonoBehaviour
                 // If the player is within the chase range, switch to chasing
                 if (PlayerInRange())
                 {
+                    anim.SetBool("is_alerted", false);
                     SetState(State.Chasing);
                 }
                 break;
@@ -49,6 +53,8 @@ public class EnemyAI : MonoBehaviour
                 // If the player is no longer within the chase range, switch back to patrolling
                 if (!PlayerInRange())
                 {
+                    anim.SetBool("is_alerted", true);
+
                     SetState(State.Patrolling);
                 }
                 break;

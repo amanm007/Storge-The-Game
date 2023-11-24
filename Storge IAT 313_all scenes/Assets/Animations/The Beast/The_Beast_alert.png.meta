@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c70d0af14f8aaf344a847d48ee8d5551
+guid: 6a29fdcb411779f43bbfeb5b499726a9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,18 +102,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -129,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: The_Beast_0
+      name: The_Beast_alert_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9012fc8f3ea95d245b7a3ff9779c9341
-      internalID: -1606818984
+      spriteID: 66c54ccf30696064c862e797801fc369
+      internalID: -697063671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The_Beast_1
+      name: The_Beast_alert_1
       rect:
         serializedVersion: 2
         x: 128
@@ -164,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42c5f0b5d6791b9408ca42f8669e1263
-      internalID: -659907641
+      spriteID: 4c3bf106f87760441ad9a6fac117ca9f
+      internalID: 1514270106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The_Beast_2
+      name: The_Beast_alert_2
       rect:
         serializedVersion: 2
         x: 256
@@ -185,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 561e88d4e671d0549a2221a99f9951c4
-      internalID: -1884540581
+      spriteID: fef12559b10670e4a9f16a74413f6f97
+      internalID: -1903908146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The_Beast_3
+      name: The_Beast_alert_3
       rect:
         serializedVersion: 2
         x: 384
@@ -206,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26350c01be2942547995c600b955f2ab
-      internalID: -986965543
+      spriteID: 1da204e07f5ffbc4a95bee0f5aa9822b
+      internalID: 313648317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The_Beast_4
+      name: The_Beast_alert_4
       rect:
         serializedVersion: 2
         x: 512
@@ -227,8 +215,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c9a8f8d86a68da408bd0d6138d8b9c2
-      internalID: -439720218
+      spriteID: 6be84e2ff1136574fb434fe7f0cddce7
+      internalID: 1892334181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Beast_alert_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 256323bed06039547aa088925f1e34ed
+      internalID: -106155047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Beast_alert_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f8c95735edb78e408769a9f23418045
+      internalID: 1141123244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The_Beast_alert_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ce1716a265b2a04c81048252022ecd1
+      internalID: 698045160
       vertices: []
       indices: 
       edges: []
@@ -244,11 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      The_Beast_0: -1606818984
-      The_Beast_1: -659907641
-      The_Beast_2: -1884540581
-      The_Beast_3: -986965543
-      The_Beast_4: -439720218
+      The_Beast_alert_0: -697063671
+      The_Beast_alert_1: 1514270106
+      The_Beast_alert_2: -1903908146
+      The_Beast_alert_3: 313648317
+      The_Beast_alert_4: 1892334181
+      The_Beast_alert_5: -106155047
+      The_Beast_alert_6: 1141123244
+      The_Beast_alert_7: 698045160
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -8,6 +8,7 @@ public class soundDetector : MonoBehaviour
 {
     //  [SerializeField] private Image itemImageUI;
     public AudioClip gramophoneClip;
+    AudioManager audioManager;
     public GameObject enemy;
     [SerializeField] private AudioSource collectSound;
     public Transform[] newPatrolTargets;
@@ -18,6 +19,7 @@ public class soundDetector : MonoBehaviour
     {
         // Get the AudioSource component
         collectSound = GetComponent<AudioSource>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +29,7 @@ public class soundDetector : MonoBehaviour
             if (!collectSound.isPlaying)
             {
                 collectSound.clip = gramophoneClip;
-                collectSound.Play();
+                audioManager.PlaySFXAtLocation(audioManager.gramohphone, collision.gameObject.transform.position);
             }
 
             // Destroy(collision.gameObject); // Destroy the sword object

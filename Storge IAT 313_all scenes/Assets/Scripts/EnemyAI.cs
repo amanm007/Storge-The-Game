@@ -3,98 +3,124 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-
-
 public class EnemyAI : MonoBehaviour
 {
     public Transform player;
     public float chaseRange = 5f;
+    public float attackRange = 2f; // Range within which the beast attacks
+    public float alertAnimationDuration = 1f; // Duration of the alert animation
+    public float attackCooldown = 2f; // Cooldown time for attacks
 
     private AIPath aiPath;
     private AIDestinationSetter destinationSetter;
     private Patrol patrolScript;
     private SpriteRenderer sp;
     private Animator anim;
-    private enum State { Patrolling, Chasing, RandomMoving }
+    private enum State { Patrolling, Chasing, Attacking, RandomMoving }
     private State currentState;
+    private float lastAttackTime;
 
     private void Start()
     {
         aiPath = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
         patrolScript = GetComponent<Patrol>();
-        sp = GetComponent<SpriteRenderer>();
+        sp = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
 
-
-        // Set the initial state to patrolling
         SetState(State.Patrolling);
-
-        // Debug the initial distance to the player
-        Debug.Log("Initial distance to player: " + Vector2.Distance(transform.position, player.position));
     }
 
     private void Update()
     {
-        // Debug the distance to the player every frame
-        Debug.Log("Current distance to player: " + Vector2.Distance(transform.position, player.position));
-
         switch (currentState)
         {
             case State.Patrolling:
-                // If the player is within the chase range, switch to chasing
-                if (PlayerInRange())
+                if (PlayerInRange(chaseRange))
                 {
-                    anim.SetBool("is_alerted", false);
-                    SetState(State.Chasing);
+                    StartCoroutine(StartChaseAfterDelay(alertAnimationDuration));
                 }
                 break;
             case State.Chasing:
-                // If the player is no longer within the chase range, switch back to patrolling
-                if (!PlayerInRange())
+                if (!PlayerInRange(chaseRange))
                 {
-                    anim.SetBool("is_alerted", true);
-
                     SetState(State.Patrolling);
+                }
+                else if (PlayerInRange(attackRange) && Time.time > lastAttackTime + attackCooldown)
+                {
+                    SetState(State.Attacking);
+                }
+                break;
+            case State.Attacking:
+                if (!PlayerInRange(attackRange))
+                {
+                    SetState(State.Chasing);
                 }
                 break;
             case State.RandomMoving:
                 // Implement random movement logic here
                 break;
         }
+
+        HandleSpriteFlipping();
+    }
+    private void HandleSpriteFlipping()
+    {
+        // Flip based on movement direction
         if (aiPath.velocity.x > 0.01f)
         {
-            // If your sprite faces left by default, set this to true
             sp.flipX = true;
         }
         else if (aiPath.velocity.x < -0.01f)
         {
-            // If your sprite faces left by default, set this to false
             sp.flipX = false;
         }
+        // Additional logic for flipping during attack
+        else
+        {
+            if (player.position.x > transform.position.x)
+            {
+                // Player is to the right, face right
+                sp.flipX = false;
+            }
+            else if (player.position.x < transform.position.x)
+            {
+                // Player is to the left, face left
+                sp.flipX = true;
+            }
+        }
+    }
+    private IEnumerator StartChaseAfterDelay(float delay)
+    {
+        anim.SetBool("is_alerted", true);
+        aiPath.canMove = false; // Stop movement
+
+        yield return new WaitForSeconds(delay);
+
+        anim.SetBool("is_alerted", false);
+        aiPath.canMove = true; // Resume movement
+        SetState(State.Chasing);
     }
 
-    private bool PlayerInRange()
+    private bool PlayerInRange(float range)
     {
-        // Check if the player is within the chase range
-        return Vector2.Distance(transform.position, player.position) <= chaseRange;
+        return Vector2.Distance(transform.position, player.position) <= range;
     }
 
     private void SetState(State newState)
     {
         currentState = newState;
 
-        // Disable all scripts to reset the state
         if (aiPath != null) aiPath.enabled = false;
         if (destinationSetter != null) destinationSetter.enabled = false;
         if (patrolScript != null) patrolScript.enabled = false;
 
-        // Enable the necessary scripts for the new state
         switch (newState)
         {
             case State.Patrolling:
                 if (patrolScript != null) patrolScript.enabled = true;
                 if (aiPath != null) aiPath.enabled = true;
+                anim.SetBool("is_attack", false);
                 break;
             case State.Chasing:
                 if (destinationSetter != null)
@@ -103,9 +129,11 @@ public class EnemyAI : MonoBehaviour
                     destinationSetter.enabled = true;
                 }
                 if (aiPath != null) aiPath.enabled = true;
+                anim.SetBool("is_attack", false);
                 break;
-            case State.RandomMoving:
-                // Enable and configure components for random movement
+            case State.Attacking:
+                anim.SetBool("is_attack", true);
+                lastAttackTime = Time.time;
                 break;
         }
 

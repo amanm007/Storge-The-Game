@@ -16,9 +16,11 @@ GameObject:
   - component: {fileID: 9169419106601609216}
   - component: {fileID: 9169419106601609217}
   - component: {fileID: 9169419106601609218}
-  - component: {fileID: 9169419106601609221}
   - component: {fileID: 9169419106601609220}
   - component: {fileID: 1518420451}
+  - component: {fileID: 8751543172807381485}
+  - component: {fileID: 1316410805}
+  - component: {fileID: 1316410806}
   m_Layer: 0
   m_Name: June
   m_TagString: Player
@@ -35,8 +37,8 @@ Transform:
   m_GameObject: {fileID: 9169419106601609247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.71, y: -1.89, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 903073635192931728}
   m_Father: {fileID: 0}
@@ -82,7 +84,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 557728764, guid: cef1c01dc906fe84ab119f24f4f8d425, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -170,7 +172,7 @@ MonoBehaviour:
   - {x: -0.18042433, y: -0.35854828, z: 0}
   m_ShapePathHash: 149821655
   m_Mesh: {fileID: 0}
-  m_InstanceId: -3488
+  m_InstanceId: -119068
   m_LocalBounds:
     m_Center: {x: -0.03192976, y: 0.006349236, z: 0}
     m_Extent: {x: 0.2994866, y: 0.46555904, z: 0}
@@ -290,7 +292,48 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!82 &9169419106601609221
+--- !u!114 &9169419106601609220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169419106601609247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89a4903cf45e954fa205d2440166587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 10
+  healthbar: {fileID: 0}
+--- !u!114 &1518420451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169419106601609247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8439f064c8aa18842a0a105f0aa56675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gramophoneClip: {fileID: 8300000, guid: 068982e9509c77c48a2138bd32ea52ae, type: 3}
+  enemy: {fileID: 0}
+  collectSound: {fileID: 0}
+  newPatrolTargets:
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!81 &8751543172807381485
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169419106601609247}
+  m_Enabled: 1
+--- !u!82 &1316410805
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,9 +343,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 068982e9509c77c48a2138bd32ea52ae, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 934e3219653cbff4a9295d625c52cc58, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -386,7 +429,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &9169419106601609220
+--- !u!114 &1316410806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,30 +438,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9169419106601609247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e89a4903cf45e954fa205d2440166587, type: 3}
+  m_Script: {fileID: 11500000, guid: ca9699ce6cf37064e8a067569d544bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 10
-  healthbar: {fileID: 0}
---- !u!114 &1518420451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9169419106601609247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8439f064c8aa18842a0a105f0aa56675, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gramophoneClip: {fileID: 8300000, guid: 068982e9509c77c48a2138bd32ea52ae, type: 3}
-  enemy: {fileID: 0}
-  collectSound: {fileID: 9169419106601609221}
-  newPatrolTargets:
-  - {fileID: 0}
-  - {fileID: 0}
+  itemImageUI: {fileID: 0}
+  collectSound: {fileID: 1316410805}
 --- !u!1001 &2553703256781940009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,6 +513,10 @@ PrefabInstance:
     - target: {fileID: 3456740567483736253, guid: 0cf0148aadaade041884e3a00680699c, type: 3}
       propertyPath: m_Name
       value: Aiko
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456740567483736253, guid: 0cf0148aadaade041884e3a00680699c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cf0148aadaade041884e3a00680699c, type: 3}

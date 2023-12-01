@@ -90,4 +90,10 @@ public class PlayerHealth : MonoBehaviour
         }
 
     }
+    public void IncreaseHealth(float amount)
+    {
+        health += amount;
+        health = Mathf.Clamp(health, 0, maxHealth);
+        // Update health bar and other related UI elements if necessary
+    }
 }

@@ -19,6 +19,7 @@ public class NPCPatrol : MonoBehaviour
     private Vector3 patrolTarget;
     private enum PatrolMode { AroundPlayer, Waypoints }
     private PatrolMode currentPatrolMode = PatrolMode.AroundPlayer;
+    private Coroutine attackCoroutine;
 
 
 
@@ -87,6 +88,7 @@ public class NPCPatrol : MonoBehaviour
         patrolTarget = player.transform.position + new Vector3(randomDirection.x, randomDirection.y, 0);
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -101,7 +103,23 @@ public class NPCPatrol : MonoBehaviour
             }
         }
     }
+    */
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            if (attackCoroutine == null)
+            {
+                // Trigger the attack immediately
+                isAttacking = true;
+                animator.SetBool("isWalking", false);
+                animator.SetTrigger("isAttacking");
 
+                attackCoroutine = StartCoroutine(AttackPlayer(collision.collider));
+            }
+        }
+    }
+    /*
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -110,6 +128,45 @@ public class NPCPatrol : MonoBehaviour
             isAttacking = false;
             animator.ResetTrigger("isAttacking");
             animator.SetBool("isWalking", true);
+        }
+    }
+    */
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
+            isAttacking = false;
+            animator.ResetTrigger("isAttacking");
+            animator.SetBool("isWalking", true);
+        }
+    }
+    private IEnumerator AttackPlayer(Collider2D playerCollider)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(.5f);
+
+
+            if (playerCollider != null && playerCollider.gameObject.activeInHierarchy)
+            {
+                PlayerHealth playerHealth = playerCollider.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    // Apply damage
+                    playerHealth.TakeDamage(attackDamage);
+                    animator.SetTrigger("isAttacking");
+                }
+            }
+            else
+            {
+                break;
+            }
         }
     }
     public void UpdateWaypoints(Transform[] newWaypoints)

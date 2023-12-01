@@ -72,7 +72,7 @@ public class EnemyDamage : MonoBehaviour
             {
                 playerHealth.TakeDamage(PoolDamage);
             }
-            yield return new WaitForSeconds(2f); // Wait for 2 seconds before applying damage again
+            yield return new WaitForSeconds(1f); // Wait for 2 seconds before applying damage again
         }
     }
 

@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5510206029410100542}
   - component: {fileID: 5021055418779522064}
-  m_Layer: 0
+  - component: {fileID: 1813837988}
+  m_Layer: 6
   m_Name: Toxic Pool
-  m_TagString: Untagged
+  m_TagString: Toxic Pool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,19 +58,36 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -17.542122, y: 2.5209932}
-      - {x: -17.605934, y: -7.2452497}
-      - {x: -8.572999, y: -7.3239393}
-      - {x: -8.620586, y: -6.532899}
-      - {x: -9.654549, y: -6.3015213}
-      - {x: -9.674084, y: -5.607253}
-      - {x: -11.549377, y: -5.3456635}
-      - {x: -11.753944, y: -4.5240955}
-      - {x: -12.592407, y: -4.229075}
-      - {x: -12.660252, y: -3.3479784}
-      - {x: -13.6343, y: -3.3777034}
-      - {x: -13.666267, y: 0.6222489}
-      - {x: -15.63773, y: 0.65766263}
-      - {x: -15.69286, y: 1.4934509}
-      - {x: -16.498037, y: 1.5992222}
-      - {x: -16.565712, y: 2.463758}
+    - - {x: -16.483215, y: -0.9700899}
+      - {x: -16.513939, y: -2.0830812}
+      - {x: -16.547886, y: -2.9228592}
+      - {x: -16.57893, y: -3.4223623}
+      - {x: -16.57053, y: -4.117526}
+      - {x: -16.341885, y: -4.6641645}
+      - {x: -15.709667, y: -4.6168747}
+      - {x: -14.957733, y: -4.6507564}
+      - {x: -13.838669, y: -4.6895504}
+      - {x: -13.767132, y: -4.4938016}
+      - {x: -13.686066, y: -4.0428867}
+      - {x: -13.766663, y: -3.410794}
+      - {x: -13.748993, y: -1.3632019}
+      - {x: -13.9501, y: -1.0134246}
+      - {x: -14.286499, y: -0.83945394}
+      - {x: -15.323313, y: -0.81640816}
+      - {x: -15.721897, y: -0.8287797}
+--- !u!114 &1813837988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5510206029410100541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bbca490f99adb4c82428dbb5a5fce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BeastDamage: 2
+  PoolDamage: 1
+  TendrilDamage: 1
+  playerHealth: {fileID: 0}

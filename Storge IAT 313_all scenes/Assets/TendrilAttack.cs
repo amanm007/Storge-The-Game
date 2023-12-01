@@ -6,11 +6,14 @@ public class TendrilAttack : MonoBehaviour
 {
     private Animator anim;
     private BoxCollider2D boxCollider;
+    
+
 
     void Start()
     {
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -34,13 +37,5 @@ public class TendrilAttack : MonoBehaviour
         anim.SetBool("is_triggered", false);
     }
 
-    // Implement collision logic for when the tendril is attacking
-    /*void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            // Apply damage to the player
-        }
-    }
-    */
+    
 }

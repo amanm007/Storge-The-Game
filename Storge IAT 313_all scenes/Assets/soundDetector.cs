@@ -7,10 +7,9 @@ using UnityEngine.UI;
 public class soundDetector : MonoBehaviour
 {
     //  [SerializeField] private Image itemImageUI;
-    public AudioClip gramophoneClip;
     AudioManager audioManager;
     public GameObject enemy;
-    [SerializeField] private AudioSource collectSound;
+  //  [SerializeField] private AudioSource collectSound;
     public Transform[] newPatrolTargets;
 
 
@@ -18,7 +17,7 @@ public class soundDetector : MonoBehaviour
     void Start()
     {
         // Get the AudioSource component
-        collectSound = GetComponent<AudioSource>();
+        //collectSound = GetComponent<AudioSource>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
     }
@@ -26,11 +25,10 @@ public class soundDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Gramophone"))
         {
-            if (!collectSound.isPlaying)
-            {
-                collectSound.clip = gramophoneClip;
-                audioManager.PlaySFXAtLocation(audioManager.gramohphone, collision.gameObject.transform.position);
-            }
+
+            //collectSound.clip = gramophoneClip;
+            audioManager.PlaySFXAtLocation(audioManager.gramohphone, collision.gameObject.transform.position);
+
 
             // Destroy(collision.gameObject); // Destroy the sword object
             Patrol enemyPatrolScript = enemy.GetComponent<Patrol>();
@@ -41,5 +39,23 @@ public class soundDetector : MonoBehaviour
 
             }
         }
+
+        if (collision.gameObject.CompareTag("Clock"))
+        {
+
+            //collectSound.clip = gramophoneClip;
+            audioManager.PlaySFXAtLocation(audioManager.grandfatherclock, collision.gameObject.transform.position);
+
+
+            // Destroy(collision.gameObject); // Destroy the sword object
+            Patrol enemyPatrolScript = enemy.GetComponent<Patrol>();
+            if (enemyPatrolScript != null)
+            {
+                enemyPatrolScript.UpdateTargets(newPatrolTargets);
+
+
+            }
+        }
+
     }
 }

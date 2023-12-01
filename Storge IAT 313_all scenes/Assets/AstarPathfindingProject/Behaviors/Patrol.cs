@@ -64,6 +64,19 @@ namespace Pathfinding {
             index = 0; // Reset index to start patrolling from the first new target
             switchTime = float.PositiveInfinity; // Reset switch time
         }
+        public Vector2 GetNextPatrolPoint()
+        {
+            if (targets.Length == 0) return Vector2.zero;
+
+            // Ensure the index is within the bounds of the targets array
+            int nextIndex = (index + 1) % targets.Length;
+            return targets[nextIndex].position;
+        }
+        public Vector2 GetCurrentPatrolPoint()
+        {
+            if (targets.Length == 0 || index >= targets.Length) return Vector2.zero;
+            return targets[index].position;
+        }
 
     }
 }

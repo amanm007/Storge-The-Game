@@ -11,6 +11,7 @@ TagManager:
   - Tendrils
   - Gramophone
   - Audio
+  - Clock
   layers:
   - Default
   - TransparentFX

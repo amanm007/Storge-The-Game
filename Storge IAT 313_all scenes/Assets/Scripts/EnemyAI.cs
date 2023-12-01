@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         SetState(State.Patrolling);
+        HandleSpriteFlipping();
     }
 
     private void Update()
@@ -61,33 +62,59 @@ public class EnemyAI : MonoBehaviour
                 // Implement random movement logic here
                 break;
         }
+        if (currentState == State.Patrolling)
+        {
+            UpdateSpriteDirectionBasedOnMovement();
+        }
 
         HandleSpriteFlipping();
     }
     private void HandleSpriteFlipping()
     {
-        // Flip based on movement direction
-        if (aiPath.velocity.x > 0.01f)
+        if (currentState == State.Patrolling)
         {
-            sp.flipX = true;
+            Vector2 currentPatrolPoint = patrolScript.GetCurrentPatrolPoint();
+            FlipSpriteBasedOnDirection(currentPatrolPoint);
         }
-        else if (aiPath.velocity.x < -0.01f)
+        else if (currentState == State.Chasing)
         {
-            sp.flipX = false;
+            // Flip sprite based on player's position during chasing
+            FlipSpriteBasedOnPlayerPosition();
         }
-        // Additional logic for flipping during attack
-        else
+        // Additional conditions for other states if needed
+    }
+
+    private void FlipSpriteBasedOnDirection(Vector2 targetPosition)
+    {
+        if (targetPosition.x > transform.position.x)
         {
-            if (player.position.x > transform.position.x)
-            {
-                // Player is to the right, face right
-                sp.flipX = false;
-            }
-            else if (player.position.x < transform.position.x)
-            {
-                // Player is to the left, face left
-                sp.flipX = true;
-            }
+            sp.flipX = false; // Target is to the right, face right
+        }
+        else if (targetPosition.x < transform.position.x)
+        {
+            sp.flipX = true; // Target is to the left, face left
+        }
+    }
+    private void FlipSpriteBasedOnPlayerPosition()
+    {
+        if (player.position.x > transform.position.x)
+        {
+            sp.flipX = false; // Player is to the right, face right
+        }
+        else if (player.position.x < transform.position.x)
+        {
+            sp.flipX = true; // Player is to the left, face left
+        }
+    }
+    private void UpdateSpriteDirectionBasedOnMovement()
+    {
+        if (aiPath.desiredVelocity.x > 0.01f)
+        {
+            sp.flipX = false; // Moving right, face right
+        }
+        else if (aiPath.desiredVelocity.x < -0.01f)
+        {
+            sp.flipX = true; // Moving left, face left
         }
     }
     private IEnumerator StartChaseAfterDelay(float delay)
